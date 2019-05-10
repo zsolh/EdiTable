@@ -5,6 +5,145 @@
 <div class="oj-hybrid-padding">
   <h1>About Content Area</h1>
   <div>
-      To change the content of this section, you will make edits to the about.html file located in the /js/views folder.
+        <oj-table id="table"
+                  aria-label="Departments Table"
+                  data='[[dataprovider]]'
+                  edit-mode='rowEdit'
+                  columns='[{"field": "DepartmentId",
+                             "headerText": "ReadOnly",
+                             "headerStyle": "min-width: 8em; max-width: 8em; width: 8em",
+                             "headerClassName": "oj-helper-text-align-end",
+                             "style": "min-width: 8em; max-width: 8em; width: 8em",
+                             "className": "oj-helper-text-align-end oj-read-only",
+                             "sortProperty": "DepartmentId",
+                             "template": "deptIdTemplate"},
+                            {"field": "DepartmentName",
+                             "headerText": "InputText",
+                             "headerStyle": "min-width: 8em; max-width: 8em; width: 8em",
+                             "style": "min-width: 8em; max-width: 8em; width: 8em",
+                             "sortProperty": "DepartmentName",
+                             "template": "deptNameTemplate"},
+                            {"field":"LocationId",
+                             "headerText": "InputText Number",
+                             "headerStyle": "min-width: 12em; max-width: 12em; width: 12em",
+                             "headerClassName": "oj-helper-text-align-end",
+                             "style": "min-width: 12em; max-width: 12em; width: 12em",
+                             "className": "oj-helper-text-align-end",
+                             "sortProperty": "LocationId",
+                             "template": "locIdTemplate"},
+                            {"field":"Type",
+                             "headerText": "Select",
+                             "headerStyle": "min-width: 7em; max-width: 7em; width: 7em",
+                             "style": "min-width: 7em; max-width: 7em; width: 7em",
+                             "sortProperty": "Type",
+                             "template": "typeTemplate"},
+                            {"field":"Currency",
+                             "headerText": "Combobox",
+                             "headerStyle": "min-width: 8em; max-width: 8em; width: 8em",
+                             "style": "min-width: 8em; max-width: 8em; width: 8em",
+                             "sortProperty": "Currency",
+                             "template": "currencyTemplate"},
+                            {"field":"Date",
+                             "headerText": "InputDate",
+                             "headerStyle": "min-width: 8em; max-width: 8em; width: 8em",
+                             "style": "min-width: 8em; max-width: 8em; width: 8em",
+                             "sortProperty": "Date",
+                             "template": "dateTemplate"},
+                            {"field":"Primary",
+                             "headerText": "Checkboxset",
+                             "headerStyle": "min-width: 10em; max-width: 10em; width: 10em",
+                             "headerClassName": "oj-helper-text-align-end",
+                             "style": "min-width: 10em; max-width: 10em; width: 10em",
+                             "className": "oj-helper-text-align-end oj-table-data-cell-no-padding",
+                             "sortProperty": "Primary", 
+                             "template": "primaryTemplate"}]'>
+        
+          <template slot="deptIdTemplate">
+            <oj-bind-text value="[[numberConverter.format($current.data)]]"></oj-bind-text>
+          </template>
+        
+          <template slot="deptNameTemplate">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[$current.data]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-input-text id="it1" value="{{$current.row.DepartmentName}}" data-oj-context></oj-input-text>
+            </oj-bind-if>
+          </template>
+        
+          <template slot="locIdTemplate">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[numberConverter.format($current.data)]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-input-text id="it2" value="{{$current.row.LocationId}}" data-oj-context converter="[[numberConverter]]"></oj-input-text>
+            </oj-bind-if>
+          </template>
+        
+          <template slot="typeTemplate">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[$current.data]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-select-one id="so1" aria-label="type" value='{{$current.row.Type}}' data-oj-context>
+                <oj-option value="Sales">Sales</oj-option>
+                <oj-option value="HR">HR</oj-option>
+                <oj-option value="Marketing">Marketing</oj-option>
+                <oj-option value="Finance">Finance</oj-option>
+              </oj-select-one>
+            </oj-bind-if>
+          </template>
+        
+          <template slot="currencyTemplate">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[$current.data]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-combobox-one id="co1" aria-label="currency" value="{{$current.row.Currency}}" data-oj-context>
+                  <oj-option value="USD">USD</oj-option>
+                  <oj-option value="JPY">JPY</oj-option>
+                  <oj-option value="EUR">EUR</oj-option>
+              </oj-combobox-one>
+            </oj-bind-if>
+          </template>
+        
+          <template slot="dateTemplate">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[dateConverter.format($current.data)]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-input-date id="id1" value="{{$current.row.Date}}" data-oj-context> </oj-input-date>
+            </oj-bind-if>
+          </template>
+        
+          <template slot="primaryTemplate">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-checkboxset id="cs1" value="{{$current.data}}">
+                <oj-option value="checked"></oj-option>
+              </oj-checkboxset>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-checkboxset id="cs2" value="{{$current.row.Primary}}" data-oj-context>
+                <oj-option value="checked"></oj-option>
+              </oj-checkboxset>
+            </oj-bind-if>
+          </template>
+        </oj-table>
+        
+        <br>
+        <br>
+        To edit a row, double click on it or press Enter. Press Esc to return to readonly. F2 toggles between editable and readonly.
+        <br>
+        <br>
+        <b>Edited Row Data</b>
+        <br>
+        <br>
+        <textarea id="rowDataDump" style="height: 200px; width: 300px; box-sizing: border-box;"></textarea>
   </div>
 </div>
