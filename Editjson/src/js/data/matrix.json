@@ -1,0 +1,28 @@
+{
+  "Matrix": [  
+   {  
+      "DepartmentId":22,
+      "LocationId":777,
+      "LocationId0":1200,
+      "LocationId1":2200
+   },
+   {  
+      "DepartmentId":66,
+      "LocationId":21200,
+      "LocationId0":555,
+      "LocationId1":3200
+   },
+   {  
+      "DepartmentId":10,
+      "LocationId":32010,
+      "LocationId0":11200,
+      "LocationId1":33200
+   },
+   {  
+      "DepartmentId":20,
+      "LocationId":4200,
+      "LocationId0":2300,
+      "LocationId1":5200
+   }
+]
+}

@@ -1,0 +1,109 @@
+<!--
+ Copyright (c) 2014, 2018, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-hybrid-padding">
+  <h1>Incidents Content Area</h1>
+  <div>
+    <div id="sampleDemo" style="" class="demo-padding demo-container">
+      <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+        
+        <oj-table id="table"
+                  aria-label="Departments Table"
+                  data='[[datasource]]'
+                  edit-mode='rowEdit'
+                  columns='[{"field": "DepartmentId",
+                             "headerText": "ReadOnly",
+                             "headerStyle": "min-width: 8em; max-width: 8em; width: 8em",
+                             "headerClassName": "oj-helper-text-align-end",
+                             "style": "min-width: 8em; max-width: 8em; width: 8em",
+                             "className": "oj-helper-text-align-end oj-read-only",
+                             "sortProperty": "DepartmentId",
+                             "template": "deptIdTemplate"},
+                             
+
+                             
+                            {"field":"LocationId",
+                             "headerText": "InputText Number",
+                             "headerStyle": "min-width: 12em; max-width: 12em; width: 12em",
+                             "headerClassName": "oj-helper-text-align-end",
+                             "style": "min-width: 12em; max-width: 12em; width: 12em",
+                             "className": "oj-helper-text-align-end",
+                             "sortProperty": "LocationId",
+                             "template": "locIdTemplate"},
+                             
+                            {"field":"LocationId0",
+                             "headerText": "InputText Number",
+                             "headerStyle": "min-width: 12em; max-width: 12em; width: 12em",
+                             "headerClassName": "oj-helper-text-align-end",
+                             "style": "min-width: 12em; max-width: 12em; width: 12em",
+                             "className": "oj-helper-text-align-end",
+                             "sortProperty": "LocationId0",
+                             "template": "locIdTemplate0"},
+                             
+                            {"field":"LocationId1",
+                             "headerText": "InputText Number",
+                             "headerStyle": "min-width: 12em; max-width: 12em; width: 12em",
+                             "headerClassName": "oj-helper-text-align-end",
+                             "style": "min-width: 12em; max-width: 12em; width: 12em",
+                             "className": "oj-helper-text-align-end",
+                             "sortProperty": "LocationId1",
+                             "template": "locIdTemplate1"}                             
+                             ]'>
+        
+          <template slot="deptIdTemplate">
+            <oj-bind-text value="[[numberConverter.format($current.data)]]"></oj-bind-text>
+          </template>
+        
+
+        
+          <template slot="locIdTemplate">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[numberConverter.format($current.data)]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-input-text id="it2" value="{{$current.row.LocationId}}" data-oj-context converter="[[numberConverter]]"></oj-input-text>
+            </oj-bind-if>
+          </template>
+        
+          <template slot="locIdTemplate0">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[numberConverter.format($current.data)]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-input-text id="it2" value="{{$current.row.LocationId}}" data-oj-context converter="[[numberConverter]]"></oj-input-text>
+            </oj-bind-if>
+          </template>
+        
+
+          <template slot="locIdTemplate1">
+            <oj-bind-if test='[[$current.mode=="navigation"]]'>
+              <oj-bind-text value="[[numberConverter.format($current.data)]]"></oj-bind-text>
+            </oj-bind-if>
+        
+            <oj-bind-if test='[[$current.mode=="edit"]]'>
+              <oj-input-text id="it2" value="{{$current.row.LocationId}}" data-oj-context converter="[[numberConverter]]"></oj-input-text>
+            </oj-bind-if>
+          </template>        
+
+        
+
+        </oj-table>
+        
+        <br>
+        <br>
+        To edit a row, double click on it or press Enter. Press Esc to return to readonly. F2 toggles between editable and readonly.
+        <br>
+        <br>
+        <b>Edited Row Data</b>
+        <br>
+        <br>
+        <textarea id="rowDataDump" style="height: 200px; width: 300px; box-sizing: border-box;"></textarea>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
